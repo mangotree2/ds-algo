@@ -2,8 +2,9 @@ package binarysearchtree
 
 import (
 	"fmt"
-	"github.com/mangotree2/ds-algo/tree"
-	"github.com/mangotree2/ds-algo/tree/binarytree"
+	"github.com/mangotree2/ds-algo/binarytree/binarytree"
+	"github.com/mangotree2/ds-algo/binarytree"
+
 )
 
 

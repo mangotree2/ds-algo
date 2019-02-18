@@ -1,6 +1,6 @@
 package binarytree
 
-import "github.com/mangotree2/ds-algo/tree"
+import "github.com/mangotree2/ds-algo/binarytree"
 
 type BinaryTree struct {
 	root *tree.Node
