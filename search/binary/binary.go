@@ -79,7 +79,7 @@ func BinarySearchLast(a []int, v int) int {
 	return -1
 }
 
-//查找第一个大于等于给定值的元素
+//查找最后一个一个小于等于给定值的元素
 func BinarySearchFirstGT(a []int, v int) int {
 	n := len(a)
 	if n == 0 {
@@ -106,7 +106,7 @@ func BinarySearchFirstGT(a []int, v int) int {
 	return -1
 }
 
-//查找最后一个小于等于给定值的元素
+//查找第一个大于等于给定值的元素
 func BinarySearchLastLT(a []int, v int) int {
 	n := len(a)
 	if n == 0 {
