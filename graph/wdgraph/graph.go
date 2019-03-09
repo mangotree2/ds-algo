@@ -138,6 +138,8 @@ func (g *Graph) recurse(s, t int, prev []int, visited []bool, isFound bool) {
 type Vertex struct {
 	id int //顶点编号
 	dist int //从起始顶点到这个顶点的距离
+	f int // f(i) = g(i)+h(i) //g :距离起点的距离 h : 距离终点的距离
+	x,y int //坐标
 
 }
 
@@ -163,7 +165,7 @@ func (g *Graph)Dijkstra(s, t int) {
 	pq := pqueue.New(g.v) //小顶堆实现的优先队列
 	inQueue := make([]bool,g.v)
 
-	pq.Push(pqueue.Item{
+	pq.Push(&pqueue.Item{
 		Value:    vs[s],
 		Priority: int64(vs[s].dist),
 	})
@@ -171,7 +173,7 @@ func (g *Graph)Dijkstra(s, t int) {
 	inQueue[s] = true
 
 	for pq.Len() > 0 {
-		 minV := pq.Pop().(pqueue.Item).Value.(Vertex) //取dist 最小的
+		 minV := pq.Pop().(*pqueue.Item).Value.(Vertex) //取dist 最小的
 		 if minV.id == t {
 		 	break
 		 }
@@ -186,7 +188,7 @@ func (g *Graph)Dijkstra(s, t int) {
 				predecessor[nextV.id] = minV.id //更新前驱节点
 				if inQueue[nextV.id] == false {
 					//放入队列
-					pq.Push(pqueue.Item{
+					pq.Push(&pqueue.Item{
 						Value:    vs[nextV.id],
 						Priority: int64(vs[nextV.id].dist),
 					})
@@ -205,4 +207,53 @@ func (g *Graph)Dijkstra(s, t int) {
 
 }
 
+func hManhattan(v1, v2 Vertex) int {
+	return int(math.Abs(float64(v1.x) - float64(v2.x))+ math.Abs(float64(v1.y)-float64(v2.y)))
+}
 
+
+func (g *Graph) AStar(s, t int) {
+	predecessor := make([]int,g.v)
+	//按照vertex的值构建小顶堆，而不是dist
+	pq := pqueue.New(g.v)
+	inQueue := make([]bool,g.v)
+	vs := make([]Vertex,g.v)
+	vs[s].dist = 0
+	vs[s].f = 0
+	pq.Push(&pqueue.Item{
+		Value:    vs[s],
+		Priority: int64(vs[s].f),
+	})
+
+	for pq.Len() > 0 {
+		minV := pq.Pop().(*pqueue.Item).Value.(Vertex)
+		for e := g.adj[minV.id].Front();e!= nil;e.Next() {
+			//取出一条与minV相连的边
+			e := e.Value.(Edge)
+			nextV := vs[e.tid]
+			if minV.dist + e.w < nextV.dist {
+				vs[e.tid].dist = minV.dist + e.w
+				vs[e.tid].f = vs[e.tid].dist + hManhattan(minV,nextV)
+				predecessor[nextV.id] = minV.id
+
+				if inQueue[nextV.id] == true{
+					pq.Update(nextV)
+				} else {
+					pq.Push(&pqueue.Item{
+						Value:    vs[nextV.id],
+						Priority: int64(vs[nextV.id].f),
+					})
+					inQueue[nextV.id] = true
+				}
+
+			}
+			if nextV.id == t {
+				break
+			}
+
+		}
+	}
+	fmt.Printf("%d",s)
+	printPrev(predecessor,s,t)
+
+}
