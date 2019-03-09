@@ -19,7 +19,7 @@ func (a *ArrayStack) Push(v interface{}) {
 		a.top++
 	}
 
-	if a.top > len(a.data) {
+	if a.top >= len(a.data) {
 		a.data = append(a.data,v)
 	} else {
 		a.data[a.top] = v
