@@ -5,6 +5,8 @@ package _0_1bag
 //weight 每个物品的重量
 //value 每个物品的价值
 //n多少个物品，w 背包可承重
+
+
 func Knapsack(weight []int, value []int, n int, w int) int {
 	status := make([][]int,n)
 	for i :=range status {
