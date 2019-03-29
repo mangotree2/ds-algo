@@ -23,11 +23,15 @@ import (
 //
 //你的算法的时间复杂度应为O(n)，并且只能使用常数级别的空间。
 
+//一开始我的思路是用bitMap 或者b
+
+//这里的核心思路就是对应的位置填对应的数。。。。
 func firstMissingPositive(nums []int) int {
 
 	min := math.MaxInt64
 	nums = append(nums,-1)
 	l := len(nums)
+	//找出最小的正整数
 	for i := 0;i < l;i++ {
 		if nums[i] > 0 {
 			if nums[i] < min {
@@ -42,6 +46,7 @@ func firstMissingPositive(nums []int) int {
 	}
 
 
+	//对应的位置填对应的数nums[1] = 1
 	for i := 0; i < l; i++ {
 		for nums[i] > 0 && nums[i] <= l-1 && nums[nums[i]] != nums[i] {
 			nums[nums[i]],nums[i] = nums[i],nums[nums[i]]
