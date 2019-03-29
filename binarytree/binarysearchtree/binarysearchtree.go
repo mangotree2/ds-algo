@@ -90,7 +90,7 @@ func (t *BinarySearchTree) Delete(v interface{}) bool {
 	if cur == nil {
 		return false
 	} else if nil != cur.Right && nil != cur.Left{
-		//查找有字数最小节点
+		//查找右子树最小节点
 		min := cur.Right
 		minP := cur
 
@@ -98,11 +98,13 @@ func (t *BinarySearchTree) Delete(v interface{}) bool {
 			minP = min
 			min = min.Left
 		}
+		//右子树最小值替代当前值
 		cur.Value = min.Value
 		cur = min
 		parent = minP
 
-	}//利用有左节点此节点就不是最小的节点，出来结果有2种，
+	}
+	//利用有左节点此节点就不是最小的节点，出来结果有2种，
 	// 1：在右子树找到有左节点则此时cur为叶子节点，
 	// 2: 在有字数没找到左节点，则此时cur 为删除节点的右节点，此时parent 为要删除节点的指针
 

@@ -112,6 +112,7 @@ func (bt *BinaryTree) PostOrderTraverseByStack() {
 	}
 }
 
+//按层遍历，借助队列
 func (bt *BinaryTree) LevelTraverse() {
 	if bt.root == nil {
 		return
