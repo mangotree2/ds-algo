@@ -14,6 +14,11 @@ package longestsequence
 
 
 
+
+
+
+
+
 func LongestSubSequence(a []int,n int) int {
 	// 创建一个数组, 索引 i 对应考察元素的下标,
 	// 存储 arr[0...i] 的最长上升子序列大小
@@ -30,7 +35,7 @@ func LongestSubSequence(a []int,n int) int {
 			}
 		}
 
-		lengths[i] =max
+		lengths[i] = max
 	}
 
 	return lengths[n-1]

@@ -15,6 +15,17 @@ import "fmt"
 //输入: [2,2,1,1,1,2,2]
 //输出: 2
 //m没考虑出现相同次数的
+
+
+
+
+
+
+
+
+
+
+
 func majorityElement(nums []int) int {
 	m := make(map[int]int)
 	s := make([]int,0,len(nums)+1)

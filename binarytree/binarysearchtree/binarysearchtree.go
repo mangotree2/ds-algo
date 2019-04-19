@@ -104,9 +104,10 @@ func (t *BinarySearchTree) Delete(v interface{}) bool {
 		parent = minP
 
 	}
+
 	//利用有左节点此节点就不是最小的节点，出来结果有2种，
 	// 1：在右子树找到有左节点则此时cur为叶子节点，
-	// 2: 在有字数没找到左节点，则此时cur 为删除节点的右节点，此时parent 为要删除节点的指针
+	// 2: 在右子树没找到左节点，则此时cur 为删除节点的右节点，此时parent 为要删除节点的指针
 
 	//删除节点是叶子的节点或者仅有一个节点
 	var child *tree.Node

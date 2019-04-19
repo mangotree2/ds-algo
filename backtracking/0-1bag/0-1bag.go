@@ -9,6 +9,21 @@ import "math"
 // f(0, 0, a, 10, 100)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var maxW = math.MinInt64
 
 func Find(i, cw int, item []int, n, w int) {

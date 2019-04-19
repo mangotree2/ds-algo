@@ -20,6 +20,8 @@ import (
 
 // 非最优， 最优是排序后，左右指针查询
 //这里其实也是求2数之和，两数之和就是一一对应的Map 映射
+
+
 func threeSum(nums []int) [][]int {
 	l := len(nums)
 	m := make(map[int]int,l)
